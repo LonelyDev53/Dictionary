@@ -43,19 +43,18 @@ public class DictionaryManagement {
         }
     }
 
-    public static void dictionaryLookup(String tuCanTra) {
-//        System.out.println("Nhập từ cần tra: ");
-//        String tuCanTra = scanner.nextLine();
+    public static String dictionaryLookup(String tuCanTra) {
         int k = 0;
-        for (int i = 0; i < Dictionary.getWords().size(); i++) {
+        int i;
+        for (i = 0; i < Dictionary.getWords().size(); i++) {
             if (Dictionary.getWords().get(i).getWord_target().equalsIgnoreCase(tuCanTra)) {
-                System.out.println("Nghĩa của từ là: " + Dictionary.getWords().get(i).getWord_explain());
                 k = 1;
             }
         }
         if (k == 0) {
-            System.out.println("Xin vui lòng nhập lại!");
-        }
+            return "Xin vui lòng nhập lại!";
+            //System.out.println("Xin vui lòng nhập lại!");
+        } else return Dictionary.getWords().get(i).getWord_explain();
     }
 
     public static void adddata() {
