@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox prefHeight="400.0" prefWidth="240.0">
+         <children>
+            <HBox prefHeight="30.0" prefWidth="200.0" spacing="7.5">
+               <padding>
+                  <Insets bottom="7.5" left="7.5" right="7.5" top="7.5" />
+               </padding>
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="10.0" prefWidth="70.0" text="Add" />
+                  <Button layoutX="18.0" layoutY="18.0" mnemonicParsing="false" prefHeight="10.0" prefWidth="70.0" text="Edit" />
+                  <Button layoutX="96.0" layoutY="18.0" mnemonicParsing="false" prefHeight="10.0" prefWidth="70.0" text="Delete" />
+               </children>
+            </HBox>
+            <TextField prefHeight="15.0" promptText="Type some word here" />
+         </children>
+      </VBox>
+      <TextArea editable="false" prefHeight="480.0" prefWidth="480.0" />
+   </children>
+</HBox>
