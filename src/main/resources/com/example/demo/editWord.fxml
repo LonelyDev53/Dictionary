@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="600.0" fx:controller="com.example.demo.Controller" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <GridPane prefHeight="60.0" prefWidth="600.0">
         <columnConstraints>
@@ -24,8 +24,8 @@
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nhập từ tiếng Anh" textAlignment="CENTER" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nhập nghĩa tiếng Việt" textAlignment="CENTER" GridPane.rowIndex="1" />
-            <TextField prefHeight="25.0" prefWidth="363.0" GridPane.columnIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="engInsert" prefHeight="25.0" prefWidth="363.0" GridPane.columnIndex="1" />
+            <TextField fx:id="vieInsert" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
       <HBox prefHeight="60.0" prefWidth="600.0">

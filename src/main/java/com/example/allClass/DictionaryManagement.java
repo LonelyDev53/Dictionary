@@ -43,9 +43,9 @@ public class DictionaryManagement {
         }
     }
 
-    public static void dictionaryLookup() {
-        System.out.println("Nhập từ cần tra: ");
-        String tuCanTra = scanner.nextLine();
+    public static void dictionaryLookup(String tuCanTra) {
+//        System.out.println("Nhập từ cần tra: ");
+//        String tuCanTra = scanner.nextLine();
         int k = 0;
         for (int i = 0; i < Dictionary.getWords().size(); i++) {
             if (Dictionary.getWords().get(i).getWord_target().equalsIgnoreCase(tuCanTra)) {
