@@ -30,7 +30,7 @@
       </GridPane>
       <HBox prefHeight="45.0" prefWidth="600.0">
          <children>
-            <Button fx:id="edit" minHeight="30.0" mnemonicParsing="false" text="Sửa từ" />
+            <Button fx:id="edit" minHeight="30.0" mnemonicParsing="false" onAction="#loadMainScene" text="Sửa từ" />
          </children>
          <padding>
             <Insets bottom="7.5" left="260.0" right="260.0" top="7.5" />

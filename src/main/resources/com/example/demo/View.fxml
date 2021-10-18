@@ -17,14 +17,16 @@
                </padding>
                <children>
                   <Button fx:id="addButton" mnemonicParsing="false" onAction="#loadAddWordScene" prefHeight="10.0" prefWidth="70.0" text="Thêm" />
-                  <Button fx:id="editButton" layoutX="18.0" layoutY="18.0" mnemonicParsing="false" prefHeight="10.0" prefWidth="70.0" text="Sửa" />
-                  <Button fx:id="deleteButton" layoutX="96.0" layoutY="18.0" mnemonicParsing="false" prefHeight="10.0" prefWidth="70.0" text="Xóa" />
+                  <Button fx:id="editButton" layoutX="18.0" layoutY="18.0" mnemonicParsing="false" onAction="#loadEditWordScene" prefHeight="10.0" prefWidth="70.0" text="Sửa" />
+                  <Button fx:id="deleteButton" layoutX="96.0" layoutY="18.0" mnemonicParsing="false" onAction="#loadDeleteWordScene" prefHeight="10.0" prefWidth="70.0" text="Xóa" />
                </children>
             </HBox>
             <HBox prefHeight="25.0" prefWidth="200.0" spacing="7.5">
                <children>
-                  <TextField fx:id="searchBar" prefHeight="25.0" prefWidth="147.5" promptText="Nhập từ cần dịch" />
-                  <Button fx:id="transButton" mnemonicParsing="false" onAction="#searchWords" prefHeight="10.0" prefWidth="70.0" text="Dịch" />
+                  <TextField fx:id="searchBar" onKeyPressed="#searchWords" prefHeight="25.0" prefWidth="225.0" promptText="Nhập từ cần dịch">
+                     <padding>
+                        <Insets left="7.5" right="7.5" />
+                     </padding></TextField>
                </children>
                <padding>
                   <Insets left="7.5" right="7.5" />

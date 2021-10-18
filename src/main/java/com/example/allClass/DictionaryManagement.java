@@ -52,7 +52,7 @@ public class DictionaryManagement {
             }
         }
         if (k == 0) {
-            return "Xin vui lòng nhập lại!";
+            return "Từ này chưa có trong từ điển!";
             //System.out.println("Xin vui lòng nhập lại!");
         } else return Dictionary.getWords().get(i).getWord_explain();
     }

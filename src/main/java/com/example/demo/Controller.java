@@ -7,8 +7,11 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import com.example.allClass.*;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -16,58 +19,71 @@ import java.io.IOException;
 
 public class Controller {
 
-    private Stage stage;
-    private Scene scene;
+    private Stage mainStage, secondStage;
+    private Scene mainScene, secondScene;
     private Parent root;
-
-
-    @FXML TextField searchBar;
-    public void searchWords() {
-        printResults(DictionaryManagement.dictionaryLookup(searchBar.getText()));
-    }
-
-    @FXML TextArea result;
-    public void printResults(String text) {
-        result.setText(text);
-    }
 
     @FXML
     public void loadMainScene(ActionEvent event) throws IOException{
         root =  FXMLLoader.load(getClass().getResource("View.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setTitle("Dictionary");
-        stage.setScene(scene);
-        stage.show();
+        mainStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        mainScene = new Scene(root);
+        mainStage.setTitle("Dictionary");
+        mainStage.setScene(mainScene);
+        mainStage.show();
     }
 
     @FXML
     public void loadAddWordScene(ActionEvent event) throws IOException{
         root =  FXMLLoader.load(getClass().getResource("addWord.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setTitle("Thêm từ mới vào từ điển");
-        stage.setScene(scene);
-        stage.show();
+        secondStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        secondScene = new Scene(root);
+        secondStage.setTitle("Thêm từ mới vào từ điển");
+        secondStage.setScene(secondScene);
+        secondStage.initModality(Modality.APPLICATION_MODAL);
+        secondStage.showAndWait();
     }
 
     @FXML
     public void loadEditWordScene(ActionEvent event) throws IOException{
         root =  FXMLLoader.load(getClass().getResource("editWord.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setTitle("Thêm từ mới vào từ điển");
-        stage.setScene(scene);
-        stage.show();
+        secondStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        secondScene = new Scene(root);
+        secondStage.setTitle("Sửa từ");
+        secondStage.setScene(secondScene);
+        secondStage.show();
     }
 
     @FXML
     public void loadDeleteWordScene(ActionEvent event) throws IOException{
         root =  FXMLLoader.load(getClass().getResource("deleteWord.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setTitle("Thêm từ mới vào từ điển");
-        stage.setScene(scene);
-        stage.show();
+        secondStage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        secondScene = new Scene(root);
+        secondStage.setTitle("Xóa từ");
+        secondStage.setScene(secondScene);
+        secondStage.show();
     }
+
+    @FXML TextField searchBar;
+    @FXML TextArea result;
+    public void searchWords(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            String meaning;
+            meaning = DictionaryManagement.dictionaryLookup(searchBar.getText());
+            result.setText(meaning);
+        }
+    }
+
+    @FXML TextField engWord;
+    @FXML TextField vietWord;
+    public void confirmAddWord(ActionEvent event) throws IOException{
+        DictionaryManagement.adddata(engWord.getText(),vietWord.getText());
+        loadMainScene(event);
+    }
+
+    @FXML
+    public void confirmEditWord(ActionEvent event) throws IOException{
+        DictionaryManagement.fixdata();
+    }
+
 }

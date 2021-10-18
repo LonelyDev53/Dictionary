@@ -24,13 +24,13 @@
             <children>
                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nhập từ tiếng Anh" textAlignment="CENTER" />
                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nhập nghĩa tiếng Việt" textAlignment="CENTER" GridPane.rowIndex="1" />
-                <TextField fx:id="engInsert" prefHeight="25.0" prefWidth="363.0" GridPane.columnIndex="1" />
-                <TextField fx:id="vieInsert" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <TextField fx:id="engWord" prefHeight="25.0" prefWidth="363.0" GridPane.columnIndex="1" />
+                <TextField fx:id="vietWord" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             </children>
         </GridPane>
         <HBox prefHeight="45.0" prefWidth="600.0">
             <children>
-                <Button fx:id="add" minHeight="30.0" mnemonicParsing="false" onAction="#loadMainScene" text="Thêm từ" />
+                <Button fx:id="add" minHeight="30.0" mnemonicParsing="false" onAction="#confirmAddWord" text="Thêm từ" />
             </children>
             <padding>
                 <Insets bottom="7.5" left="260.0" right="260.0" top="7.5" />
