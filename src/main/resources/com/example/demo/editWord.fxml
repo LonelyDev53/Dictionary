@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="600.0" fx:controller="com.example.demo.Controller" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="105.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.Controller">
    <children>
       <GridPane prefHeight="60.0" prefWidth="600.0">
         <columnConstraints>
@@ -28,12 +28,12 @@
             <TextField fx:id="vieInsert" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
-      <HBox prefHeight="60.0" prefWidth="600.0">
+      <HBox prefHeight="45.0" prefWidth="600.0">
          <children>
-            <Button minHeight="30.0" mnemonicParsing="false" text="Xác nhận" />
+            <Button fx:id="edit" minHeight="30.0" mnemonicParsing="false" text="Sửa từ" />
          </children>
          <padding>
-            <Insets bottom="15.0" left="260.0" right="260.0" top="15.0" />
+            <Insets bottom="7.5" left="260.0" right="260.0" top="7.5" />
          </padding>
       </HBox>
    </children>

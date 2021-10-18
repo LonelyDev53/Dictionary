@@ -57,12 +57,8 @@ public class DictionaryManagement {
         } else return Dictionary.getWords().get(i).getWord_explain();
     }
 
-    public static void adddata() {
-        System.out.println("Nhập nghĩa tiếng Anh: ");
-        String addwordEng = scanner.nextLine();
-        System.out.println("Nhập nghĩa tiếng Việt: ");
-        String addwordVie = scanner.nextLine();
-        Word addword = new Word(addwordEng,addwordVie);
+    public static void adddata(String enText, String vieText) {
+        Word addword = new Word(enText,vieText);
         Dictionary.getWords().add(addword);
     }
 
