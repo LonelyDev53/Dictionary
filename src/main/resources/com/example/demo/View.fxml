@@ -16,9 +16,9 @@
                   <Insets bottom="7.5" left="7.5" right="7.5" top="7.5" />
                </padding>
                <children>
-                  <Button fx:id="addButton" mnemonicParsing="false" onAction="#loadAddWordScene" prefHeight="10.0" prefWidth="70.0" text="Thêm" />
-                  <Button fx:id="editButton" layoutX="18.0" layoutY="18.0" mnemonicParsing="false" onAction="#loadEditWordScene" prefHeight="10.0" prefWidth="70.0" text="Sửa" />
-                  <Button fx:id="deleteButton" layoutX="96.0" layoutY="18.0" mnemonicParsing="false" onAction="#loadDeleteWordScene" prefHeight="10.0" prefWidth="70.0" text="Xóa" />
+                  <Button fx:id="addButton" mnemonicParsing="false" onAction="#HandleButtonAction" prefHeight="10.0" prefWidth="70.0" text="Thêm" />
+                  <Button fx:id="editButton" layoutX="18.0" layoutY="18.0" mnemonicParsing="false" onAction="#HandleButtonAction" prefHeight="10.0" prefWidth="70.0" text="Sửa" />
+                  <Button fx:id="deleteButton" layoutX="96.0" layoutY="18.0" mnemonicParsing="false" onAction="#HandleButtonAction" prefHeight="10.0" prefWidth="70.0" text="Xóa" />
                </children>
             </HBox>
             <HBox prefHeight="25.0" prefWidth="200.0" spacing="7.5">
