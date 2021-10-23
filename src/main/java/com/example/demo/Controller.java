@@ -74,7 +74,7 @@ public class Controller {
 
     @FXML Button delete;
     public void confirmDeleteWord(ActionEvent event) throws IOException{
-//        DictionaryManagement.deletedata();
+        DictionaryManagement.deleteData();
         Stage stage = (Stage) delete.getScene().getWindow();
         stage.close();
     }

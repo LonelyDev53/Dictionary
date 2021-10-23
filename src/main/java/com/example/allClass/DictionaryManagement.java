@@ -13,16 +13,16 @@ public class DictionaryManagement {
 
     public static void insertFromCommanline() {
 
-        System.out.println("Nhap so luong tu vung: ");
-        int soLuongTu = Integer.parseInt(scanner.nextLine());
+        System.out.println("Nhập số lượng từ vựng: ");
+        int amountWord = Integer.parseInt(scanner.nextLine());
 
-        for (int i = 0; i < soLuongTu; i++) {
-            System.out.println("Nhap tu vung tieng Anh: ");
-            String tuTiengAnh = scanner.nextLine();
-            System.out.println("Nhap tu vung tieng Viet: ");
-            String tuTiengViet = scanner.nextLine();
+        for (int i = 0; i < amountWord; i++) {
+            System.out.println("Nhập từ tiếng anh: ");
+            String wordEng = scanner.nextLine();
+            System.out.println("Nhập từ tiếng việt: ");
+            String wordVie = scanner.nextLine();
 
-            Word element = new Word(tuTiengAnh, tuTiengViet);
+            Word element = new Word(wordEng, wordVie);
             Dictionary.getWords().add(element);
         }
     }
@@ -42,27 +42,32 @@ public class DictionaryManagement {
                 String wordVie = txt[1];
                 Dictionary.getWords().add(new Word(wordEng, wordVie));
             }
-        } catch (IOException checkbug) {
-            checkbug.printStackTrace();
+        } catch (IOException checkBug) {
+            checkBug.printStackTrace();
         }
     }
 
     public static String dictionaryLookup(String tuCanTra) {
-        int k = 0;
         int i;
         for (i = 0; i < Dictionary.getWords().size(); i++) {
-            if (Dictionary.getWords().get(i).getWord_target().equalsIgnoreCase(tuCanTra)) {
-                k = 1;
+            if (Dictionary.getWords().get(i).getWord_target().equalsIgnoreCase(tuCanTra))
+                return Dictionary.getWords().get(i).getWord_explain();
             }
-        }
-        if (k == 0) {
-            return "Từ này chưa có trong từ điển!";
-        } else return Dictionary.getWords().get(i).getWord_explain();
+        return "Từ này chưa có trong từ điển!";
     }
 
     public static void addData(String enText, String vieText) {
-        Word addWord = new Word(enText,vieText);
-        Dictionary.getWords().add(addWord);
+        int k = 0;
+        for (int i = 0; i < Dictionary.getWords().size(); i++) {
+            if (enText.equalsIgnoreCase(Dictionary.getWords().get(i).getWord_target())) {
+                System.out.println("Xin lỗi! Từ này đã tồn tại ");
+                k = 1;
+            }
+        }
+        if(k == 0) {
+            Word addWord = new Word(enText,vieText);
+            Dictionary.getWords().add(addWord);
+        }
     }
 
     public static void fixData() {
@@ -91,11 +96,10 @@ public class DictionaryManagement {
 
     public static void deleteData() {
         System.out.println("Nhập từ muốn xóa : ");
-        String deleteowordtarget = scanner.nextLine();
+        String deleteWordTarget = scanner.nextLine();
         int k = 0;
         for (int i = 0; i < Dictionary.getWords().size(); i++) {
-
-            if (deleteowordtarget.equalsIgnoreCase(Dictionary.getWords().get(i).getWord_target())) {
+            if (deleteWordTarget.equalsIgnoreCase(Dictionary.getWords().get(i).getWord_target())) {
                 Dictionary.getWords().remove(i);
                 k = 1;
             }
@@ -117,9 +121,9 @@ public class DictionaryManagement {
 
     public static void dictionarySearcher() {
         System.out.println("Nhập kí tự cần tra: ");
-        String wordsearch = scanner.nextLine();
+        String wordSearch = scanner.nextLine();
         for (int i = 0; i < Dictionary.getWords().size(); i++) {
-            if (Dictionary.getWords().get(i).getWord_target().contains(wordsearch)) {
+            if (Dictionary.getWords().get(i).getWord_target().contains(wordSearch)) {
                 System.out.println(Dictionary.getWords().get(i).getWord_target());
             }
         }
@@ -139,29 +143,37 @@ public class DictionaryManagement {
         }
     }
 
-    public static void speechTarget(String text) {
+    public static void speechTarget(String Engtext) {
+        int k = 0;
         System.setProperty("freetts.voices", "com.sun.speech.freetts.en.us.cmu_us_kal.KevinVoiceDirectory");
         Voice voice = VoiceManager.getInstance().getVoice("kevin");
-//        String tucanTra = null;
-//        String text = dictionaryLookup(tucanTra);
+        for(int i = 0; i < Dictionary.getWords().size(); i++) {
+            if(!Engtext.equalsIgnoreCase(Dictionary.getWords().get(i).getWord_target()))
+                voice.allocate();
+                voice.speak("Can't find Word");
+                voice.deallocate();
+                k = 1;
+        }
+        if(k == 0) {
             voice.allocate();
-            voice.speak(text);
+            voice.speak(Engtext);
             voice.deallocate();
+        }
     }
 
     public static void main (String[]args) throws IOException {
-        insertFromFile();
-        DictionaryCommandline.showAllWords();
+//        insertFromFile();
+//        DictionaryCommandline.showAllWords();
 //        insertFromCommanline();
-//        dictionaryLookup();
-//        addData();
+//        System.out.print(dictionaryLookup("hello"));
+//        addData("HELLO", "XIN CHAO");
 //        deleteData();
 //        fixData();
 //        dictionarySearcher();
-//        speechTarget("morning");
+        speechTarget("come");
 //        dictionaryExportToFile();
-        sortData();
-        DictionaryCommandline.showAllWords();
+//        sortData();
+//        DictionaryCommandline.showAllWords();
     }
 }
 
