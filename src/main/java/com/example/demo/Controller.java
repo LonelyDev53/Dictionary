@@ -3,8 +3,6 @@ package com.example.demo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -62,21 +60,21 @@ public class Controller {
     @FXML TextField vietWord;
     @FXML Button add;
     public void confirmAddWord(ActionEvent event) throws IOException{
-        DictionaryManagement.adddata(engWord.getText(),vietWord.getText());
+        DictionaryManagement.addData(engWord.getText(),vietWord.getText());
         Stage stage = (Stage) add.getScene().getWindow();
         stage.close();
     }
 
     @FXML Button edit;
     public void confirmEditWord(ActionEvent event) throws IOException{
-        DictionaryManagement.fixdata();
+        DictionaryManagement.fixData();
         Stage stage = (Stage) edit.getScene().getWindow();
         stage.close();
     }
 
     @FXML Button delete;
     public void confirmDeleteWord(ActionEvent event) throws IOException{
-        DictionaryManagement.deletedata();
+//        DictionaryManagement.deletedata();
         Stage stage = (Stage) delete.getScene().getWindow();
         stage.close();
     }

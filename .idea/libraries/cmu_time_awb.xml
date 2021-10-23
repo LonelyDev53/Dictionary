@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="cmu_time_awb">
+    <CLASSES>
+      <root url="jar://C:/Program Files/Java/jdk-16.0.2/lib/cmu_time_awb.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

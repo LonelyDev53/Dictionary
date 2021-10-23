@@ -1,0 +1,4 @@
+hello	xin chao
+gold	vang
+hot	nong
+cold	lanh

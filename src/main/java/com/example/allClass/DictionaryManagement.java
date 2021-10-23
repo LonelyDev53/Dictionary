@@ -1,11 +1,15 @@
 package com.example.allClass;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Scanner;
+
+import com.sun.speech.freetts.Voice;
+import com.sun.speech.freetts.VoiceManager;
 
 public class DictionaryManagement {
     public static Scanner scanner = new Scanner(System.in);
-    private static Object Word;
 
     public static void insertFromCommanline() {
 
@@ -53,27 +57,29 @@ public class DictionaryManagement {
         }
         if (k == 0) {
             return "Từ này chưa có trong từ điển!";
-            //System.out.println("Xin vui lòng nhập lại!");
         } else return Dictionary.getWords().get(i).getWord_explain();
     }
 
-    public static void adddata(String enText, String vieText) {
-        Word addword = new Word(enText,vieText);
-        Dictionary.getWords().add(addword);
+    public static void addData(String enText, String vieText) {
+        Word addWord = new Word(enText,vieText);
+        Dictionary.getWords().add(addWord);
     }
 
-    public static void fixdata() {
-        System.out.println("Nhập vị trí từ muốn sửa : ");
-        int fixindex = Integer.parseInt(scanner.nextLine());
-        System.out.println("Nhập từ tiếng Anh sửa: ");
+    public static void fixData() {
+        System.out.println("Nhập từ tiếng Anh sai: ");
+        String replaceTarget = scanner.nextLine();
+        System.out.println("Nhập từ tiếng Việt sai: ");
+        String replaceExplain = scanner.nextLine();
+        System.out.println("Nhập từ tiếng Anh muốn sửa: ");
         String fixwordtarget = scanner.nextLine();
-        System.out.println("Nhập từ tiếng Việt sửa: ");
+        System.out.println("Nhập từ tiếng Việt muốn sửa: ");
         String fixwordexplain = scanner.nextLine();
         Word fixword = new Word(fixwordtarget,fixwordexplain);
         int k = 0;
         for (int i = 0; i < Dictionary.getWords().size(); i++) {
-            if(i == fixindex) {
-                Dictionary.getWords().set(fixindex - 1,fixword);
+            if(replaceTarget.equalsIgnoreCase(Dictionary.getWords().get(i).getWord_target()) ||
+                    replaceExplain.equalsIgnoreCase(Dictionary.getWords().get(i).getWord_target())) {
+                Dictionary.getWords().set(i, fixword);
                 k = 1;
             }
         } if ( k == 0) {
@@ -83,12 +89,30 @@ public class DictionaryManagement {
         DictionaryCommandline.showAllWords();
     }
 
-    public static void deletedata (){
-        System.out.println("Nhập vị trí từ muốn xóa : ");
-        int deleteindex = scanner.nextInt();
-        Dictionary.getWords().remove(deleteindex - 1);
-        System.out.println("Từ điển mới là:");
-        DictionaryCommandline.showAllWords();
+    public static void deleteData() {
+        System.out.println("Nhập từ muốn xóa : ");
+        String deleteowordtarget = scanner.nextLine();
+        int k = 0;
+        for (int i = 0; i < Dictionary.getWords().size(); i++) {
+
+            if (deleteowordtarget.equalsIgnoreCase(Dictionary.getWords().get(i).getWord_target())) {
+                Dictionary.getWords().remove(i);
+                k = 1;
+            }
+        }
+        if (k == 0) {
+            System.out.print("Không tìm thấy từ cần xóa !!");
+        }
+    }
+
+    public static void sortData() {
+        ArrayList<Word> sortData = Dictionary.getWords();
+        sortData.sort(new Comparator<Word>() {
+            @Override
+            public int compare(Word o1, Word o2) {
+                return o1.getWord_target().compareTo(o2.getWord_target());
+            }
+        });
     }
 
     public static void dictionarySearcher() {
@@ -109,24 +133,34 @@ public class DictionaryManagement {
                 bufferedWriter.write(Dictionary.getWords().get(i).getWord_target() +
                         "\t" + Dictionary.getWords().get(i).getWord_explain() + "\n");
             }
-//            fileWriter.close();
             bufferedWriter.close();
         } catch(IOException o) {
             o.printStackTrace();
         }
     }
 
-    public static void main (String[]args) throws IOException {
+    public static void speechTarget(String text) {
+        System.setProperty("freetts.voices", "com.sun.speech.freetts.en.us.cmu_us_kal.KevinVoiceDirectory");
+        Voice voice = VoiceManager.getInstance().getVoice("kevin");
+//        String tucanTra = null;
+//        String text = dictionaryLookup(tucanTra);
+            voice.allocate();
+            voice.speak(text);
+            voice.deallocate();
+    }
 
-//        insertFromFile();
-          insertFromCommanline();
-//        DictionaryCommandline.showAllWords();
+    public static void main (String[]args) throws IOException {
+        insertFromFile();
+        DictionaryCommandline.showAllWords();
+//        insertFromCommanline();
 //        dictionaryLookup();
-//        adddata();
-//        deletedata();
-//        fixdata();
+//        addData();
+//        deleteData();
+//        fixData();
 //        dictionarySearcher();
+//        speechTarget("morning");
 //        dictionaryExportToFile();
+        sortData();
         DictionaryCommandline.showAllWords();
     }
 }
