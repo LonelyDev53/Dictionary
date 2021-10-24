@@ -76,27 +76,23 @@ public class DictionaryManagement {
         System.out.println("Nhập từ tiếng Việt sai: ");
         String replaceExplain = scanner.nextLine();
         System.out.println("Nhập từ tiếng Anh muốn sửa: ");
-        String fixwordtarget = scanner.nextLine();
+        String fixWordTarget = scanner.nextLine();
         System.out.println("Nhập từ tiếng Việt muốn sửa: ");
-        String fixwordexplain = scanner.nextLine();
-        Word fixword = new Word(fixwordtarget,fixwordexplain);
+        String fixWordExplain = scanner.nextLine();
+        Word fixWord = new Word(fixWordTarget,fixWordExplain);
         int k = 0;
         for (int i = 0; i < Dictionary.getWords().size(); i++) {
             if(replaceTarget.equalsIgnoreCase(Dictionary.getWords().get(i).getWord_target()) ||
                     replaceExplain.equalsIgnoreCase(Dictionary.getWords().get(i).getWord_target())) {
-                Dictionary.getWords().set(i, fixword);
+                Dictionary.getWords().set(i, fixWord);
                 k = 1;
             }
         } if ( k == 0) {
             System.out.println("Không tìm thấy từ muốn sửa!! ");
         }
-        System.out.println("Từ điển mới là:");
-        DictionaryCommandline.showAllWords();
     }
 
-    public static void deleteData() {
-        System.out.println("Nhập từ muốn xóa : ");
-        String deleteWordTarget = scanner.nextLine();
+    public static void deleteData(String deleteWordTarget) {
         int k = 0;
         for (int i = 0; i < Dictionary.getWords().size(); i++) {
             if (deleteWordTarget.equalsIgnoreCase(Dictionary.getWords().get(i).getWord_target())) {
@@ -119,13 +115,11 @@ public class DictionaryManagement {
         });
     }
 
-    public static void dictionarySearcher() {
-        System.out.println("Nhập kí tự cần tra: ");
-        String wordSearch = scanner.nextLine();
-        for (int i = 0; i < Dictionary.getWords().size(); i++) {
-            if (Dictionary.getWords().get(i).getWord_target().contains(wordSearch)) {
+    public static void dictionarySearcher(String wordSearch) {
+        int i;
+        for (i = 0; i < Dictionary.getWords().size(); i++) {
+            if (Dictionary.getWords().get(i).getWord_target().toLowerCase().startsWith(wordSearch))
                 System.out.println(Dictionary.getWords().get(i).getWord_target());
-            }
         }
     }
 
@@ -144,33 +138,23 @@ public class DictionaryManagement {
     }
 
     public static void speechTarget(String Engtext) {
-        int k = 0;
         System.setProperty("freetts.voices", "com.sun.speech.freetts.en.us.cmu_us_kal.KevinVoiceDirectory");
         Voice voice = VoiceManager.getInstance().getVoice("kevin");
-        for(int i = 0; i < Dictionary.getWords().size(); i++) {
-            if(!Engtext.equalsIgnoreCase(Dictionary.getWords().get(i).getWord_target()))
-                voice.allocate();
-                voice.speak("Can't find Word");
-                voice.deallocate();
-                k = 1;
-        }
-        if(k == 0) {
             voice.allocate();
             voice.speak(Engtext);
             voice.deallocate();
-        }
     }
 
     public static void main (String[]args) throws IOException {
-//        insertFromFile();
+        insertFromFile();
 //        DictionaryCommandline.showAllWords();
 //        insertFromCommanline();
-//        System.out.print(dictionaryLookup("hello"));
+//        System.out.print(dictionaryLookup("comfortable"));
 //        addData("HELLO", "XIN CHAO");
 //        deleteData();
 //        fixData();
-//        dictionarySearcher();
-        speechTarget("come");
+          dictionarySearcher("he");
+//        speechTarget("come");
 //        dictionaryExportToFile();
 //        sortData();
 //        DictionaryCommandline.showAllWords();

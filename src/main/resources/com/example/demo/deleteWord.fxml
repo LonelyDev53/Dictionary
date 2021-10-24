@@ -1,37 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="365.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.Controller">
    <children>
-      <GridPane minHeight="30.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nhập từ muốn xóa" />
-            <TextField fx:id="searchDeleteWord" GridPane.columnIndex="1" />
-         </children>
-      </GridPane>
-      <AnchorPane prefHeight="30.0" prefWidth="600.0">
-         <children>
-            <Button fx:id="delete" layoutX="260.0" layoutY="2.0" mnemonicParsing="false" onAction="#confirmDeleteWord" prefHeight="20.0" text="Xác nhận" />
-         </children>
-         <padding>
-            <Insets bottom="5.0" right="260.0" top="5.0" />
-         </padding>
-      </AnchorPane>
+      <HBox prefHeight="38.0" prefWidth="366.0" style="-fx-background-color: #0037ae;" />
+      <Label layoutX="95.0" layoutY="54.0" prefHeight="18.0" prefWidth="174.0" text="Nhập từ muốn xóa">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="engWord" layoutX="71.0" layoutY="112.0" prefHeight="26.0" prefWidth="222.0" promptText="Word" />
+      <Button fx:id="delete" layoutX="150.0" layoutY="158.0" mnemonicParsing="false" onAction="#confirmDeleteWord" text="Xác nhận" />
    </children>
-</VBox>
+</AnchorPane>
