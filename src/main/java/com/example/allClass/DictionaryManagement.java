@@ -56,43 +56,35 @@ public class DictionaryManagement {
         return "Từ này chưa có trong từ điển!";
     }
 
-    public static void addData(String enText, String vieText) {
+    public static String addData(String enText, String vieText) {
         int k = 0;
         for (int i = 0; i < Dictionary.getWords().size(); i++) {
             if (enText.equalsIgnoreCase(Dictionary.getWords().get(i).getWord_target())) {
-                System.out.println("Xin lỗi! Từ này đã tồn tại ");
+                return "Xin lỗi! Từ này đã tồn tại ";
                 k = 1;
             }
         }
         if(k == 0) {
             Word addWord = new Word(enText,vieText);
             Dictionary.getWords().add(addWord);
+            return "Từ mới đã được thêm";
         }
     }
 
-    public static void fixData() {
-        System.out.println("Nhập từ tiếng Anh sai: ");
-        String replaceTarget = scanner.nextLine();
-        System.out.println("Nhập từ tiếng Việt sai: ");
-        String replaceExplain = scanner.nextLine();
-        System.out.println("Nhập từ tiếng Anh muốn sửa: ");
-        String fixWordTarget = scanner.nextLine();
-        System.out.println("Nhập từ tiếng Việt muốn sửa: ");
-        String fixWordExplain = scanner.nextLine();
+    public static String fixData(String replaceTarget, String fixWordTarget,String fixWordExplain) {
         Word fixWord = new Word(fixWordTarget,fixWordExplain);
         int k = 0;
         for (int i = 0; i < Dictionary.getWords().size(); i++) {
-            if(replaceTarget.equalsIgnoreCase(Dictionary.getWords().get(i).getWord_target()) ||
-                    replaceExplain.equalsIgnoreCase(Dictionary.getWords().get(i).getWord_target())) {
+            if(replaceTarget.equalsIgnoreCase(Dictionary.getWords().get(i).getWord_target())) {
                 Dictionary.getWords().set(i, fixWord);
                 k = 1;
             }
         } if ( k == 0) {
-            System.out.println("Không tìm thấy từ muốn sửa!! ");
-        }
+            return "Không tìm thấy từ muốn sửa!! ";
+        } else return "Từ đã được sửa  !!";
     }
 
-    public static void deleteData(String deleteWordTarget) {
+    public static String deleteData(String deleteWordTarget) {
         int k = 0;
         for (int i = 0; i < Dictionary.getWords().size(); i++) {
             if (deleteWordTarget.equalsIgnoreCase(Dictionary.getWords().get(i).getWord_target())) {
@@ -101,8 +93,8 @@ public class DictionaryManagement {
             }
         }
         if (k == 0) {
-            System.out.print("Không tìm thấy từ cần xóa !!");
-        }
+            return "Không tìm thấy từ cần xóa !!";
+        } else return "Đã xoá từ !!";
     }
 
     public static void sortData() {

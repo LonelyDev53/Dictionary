@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import com.example.allClass.*;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import java.io.IOException;
@@ -58,26 +59,27 @@ public class Controller {
             result.setText(meaning);
         }
     }
-
-    @FXML TextField engWord;
-    @FXML TextField vietWord;
     @FXML Button add, edit, delete, volume;
+    @FXML TextField engWord, vietWord;
+    @FXML Text addResult;
     public void confirmAddWord(ActionEvent event) throws IOException{
-        DictionaryManagement.addData(engWord.getText(),vietWord.getText());
+        addResult.setText(DictionaryManagement.addData(engWord.getText(),vietWord.getText()));
         Stage stage = (Stage) add.getScene().getWindow();
         stage.close();
     }
 
+    @FXML TextField engFix, vietFix;
+    @FXML Text editResult;
     public void confirmEditWord(ActionEvent event) throws IOException{
-        DictionaryManagement.fixData();
+        editResult.setText(DictionaryManagement.fixData(engFix.getText(),engFix.getText(),vietFix.getText()));
         Stage stage = (Stage) edit.getScene().getWindow();
-        stage.close();
     }
 
+    @FXML TextField deleteWord;
+    @FXML Text deleteResult;
     public void confirmDeleteWord(ActionEvent event) throws IOException{
-        DictionaryManagement.deleteData(engWord.getText());
+        deleteResult.setText(DictionaryManagement.deleteData(deleteWord.getText()));
         Stage stage = (Stage) delete.getScene().getWindow();
-        stage.close();
     }
 
     public void confirmVolume(ActionEvent event) throws IOException{

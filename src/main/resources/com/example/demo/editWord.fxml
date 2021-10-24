@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="105.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.Controller">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="130.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.Controller">
    <children>
       <GridPane prefHeight="60.0" prefWidth="600.0">
         <columnConstraints>
@@ -22,13 +22,19 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nhập từ tiếng Anh" textAlignment="CENTER" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nhập nghĩa tiếng Việt" textAlignment="CENTER" GridPane.rowIndex="1" />
-            <TextField fx:id="engInsert" prefHeight="25.0" prefWidth="363.0" GridPane.columnIndex="1" />
-            <TextField fx:id="vieInsert" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nhập từ tiếng Anh muốn sửa" textAlignment="CENTER">
+               <GridPane.margin>
+                  <Insets left="20.0" />
+               </GridPane.margin></Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nhập nghĩa tiếng Việt" textAlignment="CENTER" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="20.0" />
+               </GridPane.margin></Text>
+            <TextField fx:id="engFix" prefHeight="25.0" prefWidth="363.0" GridPane.columnIndex="1" />
+            <TextField fx:id="vietFix" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
-      <HBox prefHeight="45.0" prefWidth="600.0">
+      <HBox prefHeight="38.0" prefWidth="600.0">
          <children>
             <Button fx:id="edit" minHeight="30.0" mnemonicParsing="false" onAction="#confirmEditWord" text="Sửa từ" />
          </children>
@@ -36,5 +42,6 @@
             <Insets bottom="7.5" left="260.0" right="260.0" top="7.5" />
          </padding>
       </HBox>
+      <Text fx:id="editResult" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="589.13671875" />
    </children>
 </VBox>
