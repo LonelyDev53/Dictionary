@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="390.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="172.0" prefWidth="401.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.Controller">
    <children>
       <Label layoutX="15.0" layoutY="19.0" text="Nhập từ Tiếng Anh">
          <font>
@@ -21,7 +21,10 @@
       </Label>
       <TextField fx:id="engWord" layoutX="161.0" layoutY="16.0" prefHeight="26.0" prefWidth="221.0" promptText="Word" />
       <TextField fx:id="vietWord" layoutX="161.0" layoutY="54.0" prefHeight="26.0" prefWidth="222.0" promptText="Word" />
-      <Button fx:id="add" layoutX="159.0" layoutY="91.0" mnemonicParsing="false" onAction="#confirmAddWord" prefHeight="37.0" prefWidth="72.0" text="Xác nhận" />
-      <Text fx:id="addResult" layoutX="88.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="213.13671875" />
+      <Button fx:id="add" layoutX="156.0" layoutY="93.0" mnemonicParsing="false" onAction="#confirmAddWord" prefHeight="34.0" prefWidth="75.0" text="Xác Nhận">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <Text fx:id="addResult" layoutX="56.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="288.33673000335693" />
    </children>
 </AnchorPane>
