@@ -63,16 +63,14 @@ public class DictionaryManagement extends Dictionary {
         for (int i = 0; i < Dictionary.getWords().size(); i++) {
             if (enText.equalsIgnoreCase(Dictionary.getWords().get(i).getWord_target())) {
                 k = 1;
-                return "Xin lỗi! Từ này đã tồn tại ";
-
             }
         }
         if (k == 0) {
             Word addWord = new Word(enText, vieText);
             Dictionary.getWords().add(addWord);
-            return "Từ mới đã được thêm";
+            return "Từ mới đã được thêm !!";
         }
-        return "";
+        else return "Xin lỗi! Từ này đã tồn tại !!";
     }
 
     public static String fixData(String replaceTarget, String fixWordTarget, String fixWordExplain) {
@@ -85,7 +83,7 @@ public class DictionaryManagement extends Dictionary {
             }
         }
         if (k == 0) {
-            return "Không tìm thấy từ muốn sửa!! ";
+            return "Không tìm thấy từ muốn sửa !! ";
         } else return "Từ đã được sửa  !!";
     }
 
@@ -152,10 +150,10 @@ public class DictionaryManagement extends Dictionary {
 //        DictionaryCommandline.showAllWords();
 //        insertFromCommanline();
 //        System.out.print(dictionaryLookup("comfortable"));
-//        addData("HELLO", "XIN CHAO");
+        System.out.println(addData("HELLoO", "XIN CHAO"));
 //        deleteData();
 //        fixData();
-        dictionarySearcher("he");
+//        dictionarySearcher("he");
 //        speechTarget("come");
 //        dictionaryExportToFile();
 //        sortData();
