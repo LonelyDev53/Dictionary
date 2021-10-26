@@ -18,11 +18,12 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 
 public class Controller implements Initializable {
     @FXML
@@ -88,18 +89,19 @@ public class Controller implements Initializable {
 
     public void confirmAddWord(ActionEvent event) throws IOException {
         addResult.setText(DictionaryManagement.addData(engWord.getText(), vietWord.getText()));
-        Stage stage = (Stage) add.getScene().getWindow();
-        stage.close();
+        add.getScene().getWindow();
+        DictionaryManagement.dictionaryExportToFile();
     }
 
     @FXML
-    TextField engFix, vietFix;
+    TextField engBug,engFix, vietFix;
     @FXML
     Text editResult;
 
     public void confirmEditWord(ActionEvent event) throws IOException {
-        editResult.setText(DictionaryManagement.fixData(engFix.getText(), engFix.getText(), vietFix.getText()));
-        Stage stage = (Stage) edit.getScene().getWindow();
+        editResult.setText(DictionaryManagement.fixData(engBug.getText(), engFix.getText(), vietFix.getText()));
+        edit.getScene().getWindow();
+        DictionaryManagement.dictionaryExportToFile();
     }
 
     @FXML
@@ -109,16 +111,14 @@ public class Controller implements Initializable {
 
     public void confirmDeleteWord(ActionEvent event) throws IOException {
         deleteResult.setText(DictionaryManagement.deleteData(deleteWord.getText()));
-        Stage stage = (Stage) delete.getScene().getWindow();
+        delete.getScene().getWindow();
+        DictionaryManagement.dictionaryExportToFile();
     }
 
     public void confirmVolume(ActionEvent event) throws IOException {
         DictionaryManagement.speechTarget(searchBar.getText());
         volume.getScene().getWindow();
     }
-
-    @FXML
-    TextArea search;
 
     public void searchDictionaryWords(KeyEvent event) {
 
@@ -128,10 +128,6 @@ public class Controller implements Initializable {
         Collections.sort(search);
         ObservableList<String> input = FXCollections.observableArrayList(search);
         listView.setItems(input);
-
-
-        //search.setText(temp) = DictionaryManagement.dictionarySearcher(searchBar.getText());
-
     }
 
     public void mouseClicked(MouseEvent e) {
@@ -146,6 +142,6 @@ public class Controller implements Initializable {
         Collections.sort(Dictionary.listWordInListview);
         ObservableList<String> data = FXCollections.observableArrayList(Dictionary.listWordInListview);
         listView.setItems(data);
-
     }
+
 }
