@@ -17,6 +17,7 @@ public class DictionaryApplication extends Application {
         Scene mainScene = new Scene(root);
         stage.setTitle("Dictionary");
         stage.setScene(mainScene);
+        stage.setResizable(false);
         stage.show();
     }
 

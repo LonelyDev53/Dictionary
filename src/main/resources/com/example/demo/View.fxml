@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextArea?>
@@ -7,7 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.Controller">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.Controller">
    <children>
       <VBox prefHeight="480.0" prefWidth="261.0">
          <children>
@@ -23,7 +27,7 @@
             </HBox>
             <HBox prefHeight="25.0" prefWidth="200.0" spacing="7.5">
                <children>
-                  <TextField fx:id="searchBar" onKeyPressed="#searchWords" prefHeight="26.0" prefWidth="221.0" promptText="Nhập từ cần dịch">
+                  <TextField fx:id="searchBar" onKeyPressed="#searchWords" onKeyReleased="#searchDictionaryWords" prefHeight="26.0" prefWidth="221.0" promptText="Nhập từ cần dịch">
                      <padding>
                         <Insets left="7.5" right="7.5" />
                      </padding></TextField>
@@ -33,11 +37,7 @@
                   <Insets left="7.5" right="7.5" />
                </padding>
             </HBox>
-            <TextArea prefHeight="385.0" prefWidth="251.0">
-               <VBox.margin>
-                  <Insets left="5.0" right="20.0" top="30.0" />
-               </VBox.margin>
-            </TextArea>
+            <ListView fx:id="listView" onKeyReleased="#searchDictionaryWords" onMouseClicked="#mouseClicked" prefHeight="403.0" prefWidth="251.0" />
          </children>
       </VBox>
       <TextArea fx:id="result" editable="false" onKeyPressed="#searchWords" prefHeight="480.0" prefWidth="480.0" />

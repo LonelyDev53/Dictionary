@@ -1,23 +1,39 @@
 package com.example.demo;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import com.example.allClass.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import java.io.IOException;
 
-public class Controller {
-    @FXML private Button addButton;
-    @FXML private Button editButton;
-    @FXML private Button deleteButton;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.ResourceBundle;
+
+public class Controller implements Initializable {
+    @FXML
+    private Button addButton;
+    @FXML
+    private Button editButton;
+    @FXML
+    private Button deleteButton;
+
+    @FXML
+    public ListView listView = new ListView();
 
     @FXML
     private void HandleButtonAction(ActionEvent event) throws IOException {
@@ -50,8 +66,11 @@ public class Controller {
         }
     }
 
-    @FXML TextField searchBar;
-    @FXML TextArea result;
+    @FXML
+    TextField searchBar;
+    @FXML
+    TextArea result;
+
     public void searchWords(KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {
             String meaning;
@@ -59,40 +78,74 @@ public class Controller {
             result.setText(meaning);
         }
     }
-    @FXML Button add, edit, delete, volume;
-    @FXML TextField engWord, vietWord;
-    @FXML Text addResult;
-    public void confirmAddWord(ActionEvent event) throws IOException{
-        addResult.setText(DictionaryManagement.addData(engWord.getText(),vietWord.getText()));
+
+    @FXML
+    Button add, edit, delete, volume;
+    @FXML
+    TextField engWord, vietWord;
+    @FXML
+    Text addResult;
+
+    public void confirmAddWord(ActionEvent event) throws IOException {
+        addResult.setText(DictionaryManagement.addData(engWord.getText(), vietWord.getText()));
         Stage stage = (Stage) add.getScene().getWindow();
         stage.close();
     }
 
-    @FXML TextField engFix, vietFix;
-    @FXML Text editResult;
-    public void confirmEditWord(ActionEvent event) throws IOException{
-        editResult.setText(DictionaryManagement.fixData(engFix.getText(),engFix.getText(),vietFix.getText()));
+    @FXML
+    TextField engFix, vietFix;
+    @FXML
+    Text editResult;
+
+    public void confirmEditWord(ActionEvent event) throws IOException {
+        editResult.setText(DictionaryManagement.fixData(engFix.getText(), engFix.getText(), vietFix.getText()));
         Stage stage = (Stage) edit.getScene().getWindow();
     }
 
-    @FXML TextField deleteWord;
-    @FXML Text deleteResult;
-    public void confirmDeleteWord(ActionEvent event) throws IOException{
+    @FXML
+    TextField deleteWord;
+    @FXML
+    Text deleteResult;
+
+    public void confirmDeleteWord(ActionEvent event) throws IOException {
         deleteResult.setText(DictionaryManagement.deleteData(deleteWord.getText()));
         Stage stage = (Stage) delete.getScene().getWindow();
     }
 
-    public void confirmVolume(ActionEvent event) throws IOException{
+    public void confirmVolume(ActionEvent event) throws IOException {
         DictionaryManagement.speechTarget(searchBar.getText());
         volume.getScene().getWindow();
     }
 
-    @FXML TextArea search;
+    @FXML
+    TextArea search;
+
     public void searchDictionaryWords(KeyEvent event) {
-        if (event.getCode() == KeyCode.ENTER) {
-            String temp;
-//           search.setText(temp) = DictionaryManagement.dictionarySearcher(searchBar.getText());
-        }
+
+        String temp = searchBar.getText().toString();
+        List<String> search;
+        search = DictionaryManagement.dictionarySearcher(temp);
+        Collections.sort(search);
+        ObservableList<String> input = FXCollections.observableArrayList(search);
+        listView.setItems(input);
+
+
+        //search.setText(temp) = DictionaryManagement.dictionarySearcher(searchBar.getText());
+
     }
 
+    public void mouseClicked(MouseEvent e) {
+        String wordClick = listView.getSelectionModel().getSelectedItem().toString();
+        searchBar.setText(wordClick);
+        result.setText(DictionaryManagement.dictionaryLookup(wordClick));
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        Collections.sort(Dictionary.listWordInListview);
+        ObservableList<String> data = FXCollections.observableArrayList(Dictionary.listWordInListview);
+        listView.setItems(data);
+
+    }
 }

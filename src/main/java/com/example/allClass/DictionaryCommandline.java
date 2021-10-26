@@ -3,7 +3,7 @@ package com.example.allClass;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class DictionaryCommandline {
+public class DictionaryCommandline extends Dictionary{
 
     public static void showAllWords() {
         ArrayList<Word> hienThi = Dictionary.getWords();

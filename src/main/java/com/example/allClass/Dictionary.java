@@ -1,9 +1,11 @@
 package com.example.allClass;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Dictionary {
-    private static ArrayList<Word> Words = new ArrayList<Word>();
+
+    protected static ArrayList<Word> Words = new ArrayList<Word>();
 
     public static ArrayList<Word> getWords() {
         return Words;
@@ -12,5 +14,7 @@ public class Dictionary {
     public static void setWords(ArrayList<Word> words) {
         Words = words;
     }
+
+    public static List<String> listWordInListview = new ArrayList<>();
 }
 
