@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="569.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo.Controller">
     <children>
         <HBox prefHeight="64.0" prefWidth="569.0" style="-fx-background-color: #010d85;">
@@ -23,27 +22,27 @@
             <children>
                 <HBox prefHeight="62.0" prefWidth="286.0">
                     <children>
-                        <HBox prefHeight="38.0" prefWidth="195.0">
+                        <HBox prefHeight="45.0" prefWidth="214.0">
                             <HBox.margin>
-                                <Insets left="20.0" right="10.0" top="30.0" />
+                                <Insets left="20.0" right="10.0" top="20.0" />
                             </HBox.margin>
                             <children>
-                                <Button fx:id="addButton" mnemonicParsing="false" onAction="#HandleButtonAction" prefHeight="30.0" prefWidth="69.0" style="-fx-background-color: #0011a7;" text="Thêm" textAlignment="CENTER" textFill="WHITE">
+                                <Button fx:id="addButton" mnemonicParsing="false" onAction="#HandleButtonAction" prefHeight="30.0" prefWidth="77.0" style="-fx-background-color: #0011a7;" text="Thêm" textAlignment="CENTER" textFill="WHITE">
                                     <font>
-                                        <Font size="14.0" />
+                                        <Font size="15.0" />
                                     </font>
                                 </Button>
-                                <Button fx:id="editButton" mnemonicParsing="false" onAction="#HandleButtonAction" prefHeight="30.0" prefWidth="70.0" style="-fx-background-color: #0011a7;" text="Sửa" textFill="WHITE">
+                                <Button fx:id="editButton" mnemonicParsing="false" onAction="#HandleButtonAction" prefHeight="30.0" prefWidth="73.0" style="-fx-background-color: #0011a7;" text="Sửa" textFill="WHITE">
                                     <font>
-                                        <Font size="14.0" />
+                                        <Font size="15.0" />
                                     </font>
                                 </Button>
-                                <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#HandleButtonAction" prefHeight="30.0" prefWidth="77.0" style="-fx-background-color: #0011a7;" text="Xóa" textFill="WHITE">
+                                <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#HandleButtonAction" prefHeight="30.0" prefWidth="82.0" style="-fx-background-color: #0011a7;" text="Xóa" textFill="WHITE">
                                     <HBox.margin>
                                         <Insets />
                                     </HBox.margin>
                                     <font>
-                                        <Font size="14.0" />
+                                        <Font size="15.0" />
                                     </font>
                                 </Button>
                             </children>
@@ -67,12 +66,12 @@
         </VBox>
         <TextArea fx:id="result" layoutX="266.0" layoutY="122.0" onKeyPressed="#searchWords" prefHeight="322.0" prefWidth="296.0">
             <font>
-                <Font name="System Bold" size="16.0" />
+                <Font name="Times New Roman" size="18.0" />
             </font>
         </TextArea>
-        <Label layoutX="368.0" layoutY="93.0" text="Nghĩa của từ">
+        <Label layoutX="365.0" layoutY="93.0" text="Nghĩa của từ" textAlignment="CENTER">
             <font>
-                <Font size="16.0" />
+                <Font name="System Bold" size="16.0" />
             </font>
         </Label>
         <Button fx:id="volume" layoutX="263.0" layoutY="74.0" mnemonicParsing="false" onAction="#confirmVolume" prefHeight="38.0" prefWidth="42.0" text="US" textFill="#30a8e4">
