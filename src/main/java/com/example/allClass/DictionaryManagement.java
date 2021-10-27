@@ -19,6 +19,7 @@ public class DictionaryManagement extends Dictionary {
     private static final String ENDPOINT = "http://api.whatsmate.net/v1/translation/translate";
     public static Scanner scanner = new Scanner(System.in);
 
+    //Nhập dữ liệu bằng commanline
     public static void insertFromCommanline() {
 
         System.out.println("Nhập số lượng từ vựng: ");
@@ -35,6 +36,7 @@ public class DictionaryManagement extends Dictionary {
         }
     }
 
+    //Lấy dữ liệu từ điển từ file
     public static void insertFromFile() throws IOException {
         FileReader fileReader = new FileReader("dictionaries.txt");
         try {
@@ -117,6 +119,7 @@ public class DictionaryManagement extends Dictionary {
             return "Không tìm thấy từ cần xóa !!";
         } else return "Đã xoá từ !!";
     }
+
 
     public static void sortData() {
         ArrayList<Word> sortData = Dictionary.getWords();

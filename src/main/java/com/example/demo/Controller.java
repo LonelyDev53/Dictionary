@@ -37,7 +37,7 @@ public class Controller implements Initializable {
     public ListView listView = new ListView();
 
     @FXML
-    private void HandleButtonAction(ActionEvent event) throws IOException {
+    private void HandleButtonAction(ActionEvent event) throws IOException { //Xử lý sự kiện các nút thêm xóa sửa
         Stage stage;
         Parent root;
         if (event.getSource() == addButton) {
@@ -72,7 +72,7 @@ public class Controller implements Initializable {
     @FXML
     TextArea result;
 
-    public void searchWords(KeyEvent event) {
+    public void searchWords(KeyEvent event) {   // Xử lý thanh tìm kiếm
         if (event.getCode() == KeyCode.ENTER) {
             String meaning;
             meaning = DictionaryManagement.dictionaryLookup(searchBar.getText());
@@ -87,7 +87,7 @@ public class Controller implements Initializable {
     @FXML
     Text addResult;
 
-    public void confirmAddWord(ActionEvent event) throws IOException {
+    public void confirmAddWord(ActionEvent event) throws IOException { //Chức năng thêm từ
         addResult.setText(DictionaryManagement.addData(engWord.getText(), vietWord.getText()));
         add.getScene().getWindow();
         DictionaryManagement.dictionaryExportToFile();
@@ -98,7 +98,7 @@ public class Controller implements Initializable {
     @FXML
     Text editResult;
 
-    public void confirmEditWord(ActionEvent event) throws IOException {
+    public void confirmEditWord(ActionEvent event) throws IOException { //Chức năng sửa từ
         editResult.setText(DictionaryManagement.fixData(engBug.getText(), engFix.getText(), vietFix.getText()));
         edit.getScene().getWindow();
         DictionaryManagement.dictionaryExportToFile();
@@ -109,22 +109,22 @@ public class Controller implements Initializable {
     @FXML
     Text deleteResult;
 
-    public void confirmDeleteWord(ActionEvent event) throws IOException {
+    public void confirmDeleteWord(ActionEvent event) throws IOException {  //Chức năng xóa từ
         deleteResult.setText(DictionaryManagement.deleteData(deleteWord.getText()));
         delete.getScene().getWindow();
         DictionaryManagement.dictionaryExportToFile();
     }
 
-    public void confirmVolume(ActionEvent event) throws IOException {
+    public void confirmVolume(ActionEvent event) throws IOException {  //Phát âm từ ở thanh tìm kiếm
         DictionaryManagement.speechTarget(searchBar.getText());
         volume.getScene().getWindow();
     }
 
-    public void confirmAPI(ActionEvent event) throws Exception {
+    public void confirmAPI(ActionEvent event) throws Exception {   //DỊch bằng api ggTrans
         result.setText(DictionaryManagement.translateAPI(searchBar.getText()));
     }
 
-    public void searchDictionaryWords(KeyEvent event) {
+    public void searchDictionaryWords(KeyEvent event) {  //Tìm kiếm theo danh sách
 
         String temp = searchBar.getText().toString();
         List<String> search;
@@ -134,7 +134,7 @@ public class Controller implements Initializable {
         listView.setItems(input);
     }
 
-    public void mouseClicked(MouseEvent e) {
+    public void mouseClicked(MouseEvent e) {//Xử lý sự kiện click chuột vào từ trong
         String wordClick = listView.getSelectionModel().getSelectedItem().toString();
         searchBar.setText(wordClick);
         result.setText(DictionaryManagement.dictionaryLookup(wordClick));
