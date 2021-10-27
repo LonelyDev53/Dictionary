@@ -13,6 +13,7 @@ import java.net.URL;
 
 public class DictionaryManagement extends Dictionary {
 
+
     private static final String CLIENT_ID = "FREE_TRIAL_ACCOUNT";
     private static final String CLIENT_SECRET = "PUBLIC_SECRET";
     private static final String ENDPOINT = "http://api.whatsmate.net/v1/translation/translate";
@@ -39,16 +40,20 @@ public class DictionaryManagement extends Dictionary {
         try {
             BufferedReader buffer = new BufferedReader(fileReader);
             String line = " ";
+
+            // Doc tung dong cho den ki tu null
             while (true) {
                 line = buffer.readLine();
                 if (line == null) {
                     break;
                 }
+                // Doc txt roi chia thanh 2 list ngan cach boi dau tab
                 String[] txt = line.split("\t");
                 String wordEng = txt[0];
                 String wordVie = txt[1];
                 Dictionary.getWords().add(new Word(wordEng, wordVie));
             }
+
             for (int i = 0; i < getWords().size(); i++) {
                 listWordInListview.add(getWords().get(i).getWord_target());
             }
@@ -57,6 +62,7 @@ public class DictionaryManagement extends Dictionary {
         }
     }
 
+    // So sanh tu duoc nhap voi tu tieng Anh trong List
     public static String dictionaryLookup(String tuCanTra) {
         int i;
         for (i = 0; i < Dictionary.getWords().size(); i++) {
@@ -66,6 +72,8 @@ public class DictionaryManagement extends Dictionary {
         return "Từ này chưa có trong từ điển!";
     }
 
+
+    // Them tu vao list
     public static String addData(String enText, String vieText) {
         int k = 0;
         for (int i = 0; i < Dictionary.getWords().size(); i++) {
@@ -81,6 +89,7 @@ public class DictionaryManagement extends Dictionary {
         else return "Xin lỗi! Từ này đã tồn tại !!";
     }
 
+    // Nhap tu tieng Anh can sua va nghia tieng Anh viet sua
     public static String fixData(String replaceTarget, String fixWordTarget, String fixWordExplain) {
         Word fixWord = new Word(fixWordTarget, fixWordExplain);
         int k = 0;
@@ -95,6 +104,7 @@ public class DictionaryManagement extends Dictionary {
         } else return "Từ đã được sửa  !!";
     }
 
+    // Nhap tu can xoa de so sanh voi tu co trong list
     public static String deleteData(String deleteWordTarget) {
         int k = 0;
         for (int i = 0; i < Dictionary.getWords().size(); i++) {
@@ -122,6 +132,7 @@ public class DictionaryManagement extends Dictionary {
         int i;
         List<String> search = new ArrayList<>();
         for (i = 0; i < Dictionary.getWords().size(); i++) {
+            // So sánh từ gần giống từ vị trí bắt đầu
             if (Dictionary.getWords().get(i).getWord_target().toLowerCase().startsWith(wordSearch)) {
                 System.out.println(Dictionary.getWords().get(i).getWord_target());
                 search.add(Dictionary.getWords().get(i).getWord_target());
@@ -135,6 +146,7 @@ public class DictionaryManagement extends Dictionary {
         try {
             FileWriter fileWriter = new FileWriter("dictionaries.txt");
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            // Ghi dữ liệu từ List vào file
             for (int i = 0; i < Dictionary.getWords().size(); i++) {
                 bufferedWriter.write(Dictionary.getWords().get(i).getWord_target() +
                         "\t" + Dictionary.getWords().get(i).getWord_explain() + "\n");
@@ -145,6 +157,7 @@ public class DictionaryManagement extends Dictionary {
         }
     }
 
+    // Xây dựng hàm phát âm với người đọc là Kevin
     public static void speechTarget(String Engtext) {
         System.setProperty("freetts.voices", "com.sun.speech.freetts.en.us.cmu_us_kal.KevinVoiceDirectory");
         Voice voice = VoiceManager.getInstance().getVoice("kevin");
@@ -153,6 +166,8 @@ public class DictionaryManagement extends Dictionary {
         voice.deallocate();
     }
 
+    
+    // Xây dựng hàm trans API
     public static String translateAPI(String text) throws Exception {
         // TODO: Should have used a 3rd party library to make a JSON string from an object
         String jsonPayload = new StringBuilder()
@@ -183,7 +198,7 @@ public class DictionaryManagement extends Dictionary {
         os.close();
 
         int statusCode = conn.getResponseCode();
-        //System.out.println("Status Code: " + statusCode);
+        
         BufferedReader br = new BufferedReader(new InputStreamReader(
                 (statusCode == 200) ? conn.getInputStream() : conn.getErrorStream()
         ));
@@ -196,21 +211,20 @@ public class DictionaryManagement extends Dictionary {
         return "";
     }
 
-    public static void main(String[] args) throws Exception {
-        insertFromFile();
+
+    public static void main(String[] args) throws IOException {
+//        insertFromFile();
 //        DictionaryCommandline.showAllWords();
-//        insertFromCommanline();
+        insertFromCommanline();
 //        System.out.print(dictionaryLookup("comfortable"));
-        System.out.println(addData("HELLoO", "XIN CHAO"));
+//        System.out.println(addData("HELLoO", "XIN CHAO"));
 //        deleteData();
 //        fixData();
 //        dictionarySearcher("he");
 //        speechTarget("come");
 //        dictionaryExportToFile();
-//        sortData();
-//        DictionaryCommandline.showAllWords();
-        translateAPI("hello");
-
+        sortData();
+        DictionaryCommandline.showAllWords();
     }
 }
 
