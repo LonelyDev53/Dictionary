@@ -81,7 +81,7 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    Button add, edit, delete, volume;
+    Button add, edit, delete, volume,translateAPI;
     @FXML
     TextField engWord, vietWord;
     @FXML
@@ -118,6 +118,10 @@ public class Controller implements Initializable {
     public void confirmVolume(ActionEvent event) throws IOException {
         DictionaryManagement.speechTarget(searchBar.getText());
         volume.getScene().getWindow();
+    }
+
+    public void confirmAPI(ActionEvent event) throws Exception {
+        result.setText(DictionaryManagement.translateAPI(searchBar.getText()));
     }
 
     public void searchDictionaryWords(KeyEvent event) {
